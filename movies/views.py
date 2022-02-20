@@ -3,6 +3,7 @@ from django.views.generic.base import View
 
 from . import models
 
+
 # Create your views here.
 class MoviesView(View):
     '''Films list'''
@@ -10,6 +11,6 @@ class MoviesView(View):
     def get(self, request):
         movies = models.Movie.objects.all()
         data = {
-            'movies_list': movies,
+            'movie_list': movies,
         }
         return render(request, 'movies/movie_list.html', context=data)

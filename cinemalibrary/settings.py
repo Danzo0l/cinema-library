@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-5fgv2wahm3&p-3l2_l+em&x8)8l*4oc1=l#e15zakic%+h$dn=
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '192.168.1.166'
+    '192.168.1.166',
+    '127.0.0.1'
 ]
 
 
@@ -57,7 +58,9 @@ ROOT_URLCONF = 'cinemalibrary.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,6 +122,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [STATIC_DIR]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
