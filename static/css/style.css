@@ -1,3 +1,5 @@
+
+
 html,
 body {
     margin: 0;
@@ -402,6 +404,12 @@ li > a:only-child:after {
     background-size: cover;
     position: relative;
     min-height: 20em;
+}
+
+.bg1 {
+    background-color: #00000000;
+    margin-top: 0;
+    background-image: url('../single-post-pic.jpg');
 }
 
 /*-- place holder --*/
