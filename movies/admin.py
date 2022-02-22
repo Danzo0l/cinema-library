@@ -53,9 +53,9 @@ class MoviesAdmin(admin.ModelAdmin):
     inlines = [MovieShotsInline, ReviewInline, ]
     save_on_top = True
     save_as = True
-    list_editable = ('draft',)
-    readonly_fields = ('get_image', )
+    readonly_fields = ('get_image', 'draft')
     form = MovieAdminForm
+    actions = ['publish', 'unpublish']
 
     fieldsets = (
             ('Main info', {
@@ -81,6 +81,30 @@ class MoviesAdmin(admin.ModelAdmin):
 
     def get_image(self, obj):
         return mark_safe(f'<img src="{obj.poster.url}" height="220px">')
+
+    def unpublish(self, request, queryset):
+        '''unpin from publication'''
+        row_update = queryset.update(draft=True)
+        if row_update == 1:
+            message_bit = '1 запись обновлена'
+        else:
+            message_bit = f'{row_update} записаей обновлены'
+        self.message_user(request, f'{message_bit}')
+
+    def publish(self, request, queryset):
+        '''Go publication'''
+        row_update = queryset.update(draft=False)
+        if row_update == '1':
+            message_bit = '1 updating'
+        else:
+            message_bit = f'{row_update} записаей обновлены'
+        self.message_user(request, f'{message_bit}')
+
+    publish.short_description = 'publish'
+    publish.allowed_permissions = ('change',)
+
+    unpublish.short_description = 'unpublish'
+    unpublish.allowed_permissions = ('change',)
 
     get_image.short_description = 'Image'
 
