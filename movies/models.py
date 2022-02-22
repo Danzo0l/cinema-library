@@ -25,6 +25,7 @@ class Actor(models.Model):
     age = models.PositiveSmallIntegerField(default=0, verbose_name='ages')
     description = models.TextField(verbose_name='description')
     image = models.ImageField(upload_to='actors/', verbose_name='photo')
+    status = models.BooleanField(default=0, verbose_name='is_director')
 
     def __str__(self):
         return self.name
@@ -68,6 +69,9 @@ class Movie(models.Model):
     category = models.ForeignKey(Category, verbose_name='Category', on_delete=models.SET_NULL, null=True)
     url = models.SlugField(max_length=160, unique=True)
     draft = models.BooleanField(verbose_name='It is draft', default=False)
+
+    def get_review(self):
+        return self.reviews_set.filter(parent__isnull=True)
 
     def __str__(self):
         return self.title
