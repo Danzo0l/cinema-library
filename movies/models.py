@@ -105,11 +105,12 @@ class RaitingStar(models.Model):
     value = models.PositiveSmallIntegerField(default=0, verbose_name='value')
 
     def __str__(self):
-        return self.value
+        return str(self.value)
 
     class Meta:
         verbose_name = 'Star'
         verbose_name_plural = 'Stars'
+        ordering = ['-value']
 
 
 class Raiting(models.Model):

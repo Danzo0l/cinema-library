@@ -672,6 +672,40 @@ section#brands {
     font-size: 2.5em;
 }
 
+.rating {
+  overflow: hidden;
+  vertical-align: bottom;
+  display: inline-block;
+  width: 155px;
+  height: 30px;
+}
+
+.raiting > input {
+  opacity: 0;
+  margin-right: -100%;
+}
+
+.raiting > label {
+  position: relative;
+  display: block;
+  float: right;
+  background: url('../images/star-off-big.png') no-repeat;
+  background-size: 30px 30px;
+}
+
+.raiting > label:before {
+  display: block;
+  opacity: 0;
+  content: '';
+  width: 30px;
+  height: 30px;
+  background: url('../images/star-on-big.png') no-repeat;
+  background-size: 30px 30px;
+  transition: opacity 0.2s linear;
+}
+
+.raiting > label:hover:before,  .raiting > label:hover ~ label:before,  .raiting:not(:hover) > :checked ~ label:before { opacity: 1; }
+
 /*--about-grids--*/
 .service-content {
     margin-left: 1em;

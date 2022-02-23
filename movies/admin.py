@@ -147,10 +147,12 @@ class ActorAdmin(admin.ModelAdmin):
 
 @admin.register(Raiting)
 class RaitingAdmin(admin.ModelAdmin):
-    list_display = ('star', 'movie')
+    readonly_fields = ('ip', 'star', 'movie')
+    list_display = ('ip', 'star', 'movie')
 
 
 admin.site.register(RaitingStar)
+
 
 admin.site.site_title = 'Cinema-library'
 admin.site.site_header = 'cinema-library'
